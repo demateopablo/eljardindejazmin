@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+/* Paleta tomada del logo: verde salvia como marca, crema como base,
+   rosa palo / durazno / dorado apagado como acentos suaves. */
+@theme {
+  --color-cream-50: #fbf9f4;
+  --color-cream-100: #f7f3ec;
+  --color-cream-200: #efe8dc;
+  --color-cream-300: #e3d9c8;
+
+  --color-sage-100: #e6ebe1;
+  --color-sage-200: #c9d3bf;
+  --color-sage-300: #a8b59d;
+  --color-sage-400: #8c9c7f;
+  --color-sage-500: #7a8b6f;
+  --color-sage-600: #63735a;
+  --color-sage-700: #4f5c47;
+
+  --color-blush-200: #f3dedb;
+  --color-blush-300: #e8c4c0;
+  --color-blush-400: #d9a7a1;
+
+  --color-peach-200: #f6e3d6;
+  --color-peach-300: #f2d4c2;
+
+  --color-gold-300: #dcc9a3;
+  --color-gold-400: #c9a96e;
+  --color-gold-500: #b08f55;
+
+  --color-ink-500: #6b655c;
+  --color-ink-700: #4a453e;
+  --color-ink-900: #322e29;
+
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #1ebe5d;
+
+  --font-display: "Cormorant Garamond", "Georgia", "Times New Roman", serif;
+  --font-body: "Jost", "Segoe UI", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream-100 text-ink-700 font-body antialiased;
+}
+
+/* Las secciones tienen ancla; dejamos aire para que el header sticky no las tape */
+section[id] {
+  scroll-margin-top: 4.5rem;
+}
