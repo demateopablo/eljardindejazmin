@@ -1,11 +1,12 @@
 /**
- * Catálogo. Un solo lugar para editar productos, precios y aromas.
- * - `price`: número en pesos (se formatea como "$ 12.800"). `null` muestra
- *   "Precio a consultar".
- * - `image`: importar la foto desde ./assets con el alias @assets (ver ejemplo
- *   comentado). Sin imagen se muestra un placeholder.
+ * Catálogo.
+ * - Los PRODUCTOS (nombre, detalle, precio, foto, visible) viven en
+ *   `products.json`, que Mar edita desde el panel /admin. No editar a mano
+ *   salvo migraciones: el panel sobreescribe el archivo entero.
+ * - Las CATEGORÍAS y los AROMAS (con sus tags) siguen acá, en código.
  */
-// import velaGourmet from '@assets/vela-gourmet.jpg'
+import type { Catalog, CategoryId, Product } from './productsSchema'
+import catalogJson from './products.json'
 
 import tagBouquetDeRosas from '../assets/tags/bouquet-de-rosas.webp'
 import tagCitrus from '../assets/tags/citrus.webp'
@@ -18,24 +19,12 @@ import tagPapayaYMelon from '../assets/tags/papaya-y-melon.webp'
 import tagPeraYFloresBlancas from '../assets/tags/pera-y-flores-blancas.webp'
 import tagVerbenaYLima from '../assets/tags/verbena-y-lima.webp'
 
-export type CategoryId = 'velas' | 'difusores' | 'wax-melts' | 'jabones'
+export type { CategoryId, Product }
 
 export interface Category {
   id: CategoryId
   name: string
   description: string
-}
-
-export interface Product {
-  id: string
-  category: CategoryId
-  name: string
-  /** Detalle corto debajo del nombre: material, tamaño, forma… */
-  detail?: string
-  /** Precio en pesos; null = a consultar */
-  price: number | null
-  image?: string
-  imageAlt?: string
 }
 
 export interface Aroma {
@@ -48,7 +37,7 @@ export const categories: Category[] = [
   {
     id: 'velas',
     name: 'Velas aromáticas',
-    description: 'En vaso (Gourmet, Imperial, Tennessee), moldeadas (bubble, arco iris) y en caramelera.',
+    description: 'En vaso (Gourmet, Imperial, Tenesse), moldeadas (bubble, arco iris) y en caramelera.',
   },
   {
     id: 'difusores',
@@ -67,30 +56,15 @@ export const categories: Category[] = [
   },
 ]
 
-export const products: Product[] = [
-  // ── Velas ──────────────────────────────────────────────
-  { id: 'vela-gourmet', category: 'velas', name: 'Vela en vaso Gourmet', detail: 'Aroma a elección', price: 18200 },
-  { id: 'vela-gourmet-gel', category: 'velas', name: 'Vela en vaso Gourmet', detail: 'Parafina en gel · aroma a elección', price: 20500 },
-  { id: 'vela-imperial', category: 'velas', name: 'Vela en vaso Imperial', detail: 'Aroma a elección', price: 13000 },
-  { id: 'vela-imperial-gel', category: 'velas', name: 'Vela en vaso Imperial', detail: 'Parafina en gel · aroma a elección', price: 15200 },
-  { id: 'vela-tennessee', category: 'velas', name: 'Vela en vaso Tennessee', detail: 'Aroma a elección', price: 17500 },
-  { id: 'vela-tennessee-gel', category: 'velas', name: 'Vela en vaso Tennessee', detail: 'Parafina en gel · aroma a elección', price: 19200 },
-  { id: 'vela-whisky', category: 'velas', name: 'Vela en vaso de whisky', detail: 'Aroma a elección', price: null },
-  { id: 'vela-bubble', category: 'velas', name: 'Vela bubble', detail: 'Moldeada · aroma a elección', price: 17400 },
-  { id: 'vela-arco-iris', category: 'velas', name: 'Vela arco iris', detail: 'Moldeada · aroma a elección', price: 22150 },
-  { id: 'caramelera-chica', category: 'velas', name: 'Vela en caramelera', detail: 'Chica · aroma a elección', price: 10500 },
+/**
+ * Todos los productos del JSON en el orden del archivo (incluye ocultos).
+ * No se valida con zod acá a propósito: el JSON solo lo escribe la API del
+ * panel (que sí valida) y así el sitio público no carga zod.
+ */
+export const allProducts: Product[] = (catalogJson as Catalog).products
 
-  // ── Difusores ──────────────────────────────────────────
-  { id: 'difusor-125', category: 'difusores', name: 'Difusor de cañas', detail: '125 cc · envase plástico · aroma a elección', price: 12800 },
-
-  // ── Wax melts ──────────────────────────────────────────
-  { id: 'wax-melts', category: 'wax-melts', name: 'Wax melts', detail: 'Aroma a elección', price: null },
-
-  // ── Jabones ────────────────────────────────────────────
-  { id: 'jabon-chico-cuadrado', category: 'jabones', name: 'Jabón de glicerina', detail: 'Chico · cuadrado', price: 5720 },
-  { id: 'jabon-chico-oval', category: 'jabones', name: 'Jabón de glicerina', detail: 'Chico · oval', price: 3250 },
-  { id: 'jabon-grande', category: 'jabones', name: 'Jabón de glicerina', detail: 'Grande', price: 7160 },
-]
+/** Los que se muestran en el sitio. */
+export const products: Product[] = allProducts.filter((p) => p.visible)
 
 /** Aromas disponibles para todos los productos. */
 export const aromas: Aroma[] = [

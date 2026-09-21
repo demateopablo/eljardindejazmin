@@ -9,7 +9,7 @@ export function ProductCard({ product }: { product: Product }) {
         {product.image ? (
           <img
             src={product.image}
-            alt={product.imageAlt ?? (product.detail ? `${product.name} — ${product.detail}` : product.name)}
+            alt={product.detail ? `${product.name} — ${product.detail}` : product.name}
             loading="lazy"
             decoding="async"
             className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
