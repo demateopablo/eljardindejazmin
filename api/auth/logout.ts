@@ -1,5 +1,5 @@
-import { assertSameOrigin, handle, json } from '../../server/http'
-import { clearSessionCookie } from '../../server/session'
+import { assertSameOrigin, handle, json } from '../../server/http.js'
+import { clearSessionCookie } from '../../server/session.js'
 
 /** POST /api/auth/logout */
 export const POST = handle(async (req) => {

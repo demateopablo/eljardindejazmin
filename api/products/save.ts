@@ -1,7 +1,7 @@
-import { MAX_IMAGE_BYTES, savePayloadSchema } from '../../src/data/productsSchema'
-import { commitFiles, listRepoDir } from '../../server/github'
-import { assertSameOrigin, handle, HttpError, json, readJson } from '../../server/http'
-import { requireSession } from '../../server/session'
+import { MAX_IMAGE_BYTES, savePayloadSchema } from '../../src/data/productsSchema.js'
+import { commitFiles, listRepoDir } from '../../server/github.js'
+import { assertSameOrigin, handle, HttpError, json, readJson } from '../../server/http.js'
+import { requireSession } from '../../server/session.js'
 
 const PRODUCTS_JSON = 'src/data/products.json'
 const IMAGES_DIR = 'public/products'

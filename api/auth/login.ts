@@ -1,7 +1,7 @@
 import { OAuth2Client } from 'google-auth-library'
-import { adminEmails, requireEnv } from '../../server/env'
-import { assertSameOrigin, handle, HttpError, json, readJson } from '../../server/http'
-import { createSessionCookie } from '../../server/session'
+import { adminEmails, requireEnv } from '../../server/env.js'
+import { assertSameOrigin, handle, HttpError, json, readJson } from '../../server/http.js'
+import { createSessionCookie } from '../../server/session.js'
 
 /**
  * POST /api/auth/login  { credential: <ID token de Google Identity Services> }

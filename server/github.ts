@@ -1,5 +1,5 @@
-import { requireEnv } from './env'
-import { HttpError } from './http'
+import { requireEnv } from './env.js'
+import { HttpError } from './http.js'
 
 /**
  * Commit de varios archivos en un solo commit usando la Git Data API de GitHub

@@ -1,6 +1,6 @@
 import { SignJWT, jwtVerify } from 'jose'
-import { requireEnv } from './env'
-import { HttpError } from './http'
+import { requireEnv } from './env.js'
+import { HttpError } from './http.js'
 
 const COOKIE = 'admin_session'
 const MAX_AGE_SECONDS = 7 * 24 * 60 * 60
