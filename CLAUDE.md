@@ -71,6 +71,11 @@ site on Vercel (`vercel.json`).
 Re-run `npm run assets` after changing anything in `assets/`. Product photos should be imported in
 `products.ts` via the `@assets` alias (→ `./assets`) so Vite hashes and optimizes them.
 
+## Analytics
+
+Microsoft Clarity is loaded by `src/lib/clarity.ts` from `main.tsx`, only when `import.meta.env.PROD`
+and `site.clarityProjectId` (in `src/data/site.ts`) is non-empty. There is no other tracking.
+
 ## SEO
 
 `index.html` carries title/description targeting "velas aromáticas artesanales en Tres Arroyos",

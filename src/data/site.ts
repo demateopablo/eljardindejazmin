@@ -15,4 +15,6 @@ export const site = {
   instagramUrl: 'https://www.instagram.com/eljardindejazmin.deco/',
   facebookUrl: 'https://www.facebook.com/eljardindejazmindeco/',
   url: 'https://eljardindejazmin.com.ar',
+  /** Project ID de Microsoft Clarity (clarity.microsoft.com → Settings). Vacío = desactivado. */
+  clarityProjectId: 'ylvhzk2sgs' as string,
 } as const
