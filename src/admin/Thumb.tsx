@@ -1,16 +1,21 @@
-import type { PendingImages } from './Editor'
+/** path público → data URL local */
+export type Previews = Map<string, string>
 
-/** Miniatura de producto: foto del repo, foto pendiente de subir, o placeholder. */
+/**
+ * Miniatura de producto. Si hay preview local (foto pendiente o subida en esta
+ * sesión) se usa esa y NO se pide la URL pública: hasta que termine el deploy
+ * daría 404 y ese 404 podría quedar cacheado en el CDN.
+ */
 export function Thumb({
   image,
-  pending,
+  previews,
   className = '',
 }: {
   image: string | null
-  pending: PendingImages
+  previews: Previews
   className?: string
 }) {
-  const src = image ? (pending.get(image)?.previewUrl ?? image) : null
+  const src = image ? (previews.get(image) ?? image) : null
   return src ? (
     <img src={src} alt="" className={`object-cover ${className}`} />
   ) : (

@@ -1,10 +1,9 @@
 import { useEffect, useState, type FormEvent, type ReactNode } from 'react'
 import { categories } from '../data/products'
 import { productSchema, type CategoryId, type Product } from '../data/productsSchema'
-import type { PendingImages } from './Editor'
 import { resizeToWebp } from './lib/image'
 import { uniqueId } from './lib/slug'
-import { Thumb } from './Thumb'
+import { Thumb, type Previews } from './Thumb'
 
 export interface ProductDraft {
   product: Product
@@ -17,12 +16,12 @@ interface Props {
   initial: Product | null
   category: CategoryId
   takenIds: Set<string>
-  pending: PendingImages
+  previews: Previews
   onCancel: () => void
   onSubmit: (draft: ProductDraft) => void
 }
 
-export function ProductForm({ initial, category, takenIds, pending, onCancel, onSubmit }: Props) {
+export function ProductForm({ initial, category, takenIds, previews, onCancel, onSubmit }: Props) {
   const [name, setName] = useState(initial?.name ?? '')
   const [detail, setDetail] = useState(initial?.detail ?? '')
   const [cat, setCat] = useState<CategoryId>(category)
@@ -76,8 +75,8 @@ export function ProductForm({ initial, category, takenIds, pending, onCancel, on
     onSubmit({ product: parsed.data, newImage: newImage ?? undefined })
   }
 
-  // Preview: foto nueva > foto pendiente de otro guardado > foto del repo
-  const previewPending: PendingImages = newImage && image ? new Map(pending).set(image, newImage) : pending
+  // Preview: foto nueva > foto pendiente/subida en esta sesión > foto del repo
+  const formPreviews: Previews = newImage && image ? new Map(previews).set(image, newImage.previewUrl) : previews
 
   return (
     <div
@@ -94,7 +93,7 @@ export function ProductForm({ initial, category, takenIds, pending, onCancel, on
         </h2>
 
         <div className="mt-5 flex gap-4">
-          <Thumb image={image} pending={previewPending} className="h-28 w-28 shrink-0 rounded-xl" />
+          <Thumb image={image} previews={formPreviews} className="h-28 w-28 shrink-0 rounded-xl" />
           <div className="flex flex-col justify-center gap-2 text-sm">
             <label className="cursor-pointer rounded-full border border-sage-400 px-4 py-1.5 text-center text-sage-700 transition-colors hover:bg-sage-100">
               {processing ? 'Procesando…' : image ? 'Cambiar foto' : 'Subir foto'}

@@ -5,7 +5,7 @@ import { site } from '../data/site'
 import { api, ApiError } from './lib/api'
 import { ProductForm, type ProductDraft } from './ProductForm'
 import { SaveBar } from './SaveBar'
-import { Thumb } from './Thumb'
+import { Thumb, type Previews } from './Thumb'
 
 /** Fotos nuevas todavía no commiteadas: ruta pública → { base64, previewUrl } */
 export type PendingImages = Map<string, { base64: string; previewUrl: string }>
@@ -16,6 +16,8 @@ export function Editor() {
   const [products, setProducts] = useState<Product[]>(allProducts)
   const [baseline, setBaseline] = useState<string>(() => JSON.stringify(allProducts))
   const [pending, setPending] = useState<PendingImages>(new Map())
+  /** Previews de fotos ya publicadas en esta sesión (el deploy puede tardar; no pedimos la URL real). */
+  const [uploaded, setUploaded] = useState<Previews>(new Map())
   const [form, setForm] = useState<FormState>(null)
   const [saving, setSaving] = useState(false)
   const [notice, setNotice] = useState<{ kind: 'ok' | 'error'; text: string } | null>(null)
@@ -30,6 +32,12 @@ export function Editor() {
     window.addEventListener('beforeunload', warn)
     return () => window.removeEventListener('beforeunload', warn)
   }, [dirty])
+
+  const previews = useMemo<Previews>(() => {
+    const m = new Map(uploaded)
+    for (const [path, { previewUrl }] of pending) m.set(path, previewUrl)
+    return m
+  }, [uploaded, pending])
 
   const byCategory = useMemo(
     () => categories.map((c) => ({ category: c, items: products.filter((p) => p.category === c.id) })),
@@ -95,6 +103,11 @@ export function Editor() {
     try {
       await api.save({ products, images })
       setBaseline(JSON.stringify(products))
+      setUploaded((u) => {
+        const next = new Map(u)
+        for (const [path, { previewUrl }] of pending) next.set(path, previewUrl)
+        return next
+      })
       setPending(new Map())
       setNotice({
         kind: 'ok',
@@ -136,7 +149,7 @@ export function Editor() {
               {items.map((p, i) => (
                 <li key={p.id} className={`p-3 ${p.visible ? '' : 'opacity-60'}`}>
                   <div className="flex gap-3">
-                    <Thumb image={p.image} pending={pending} className="h-14 w-14 shrink-0 rounded-lg" />
+                    <Thumb image={p.image} previews={previews} className="h-14 w-14 shrink-0 rounded-lg" />
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-baseline gap-x-2">
                         <span className="font-display text-lg leading-tight text-ink-900">{p.name}</span>
@@ -196,7 +209,7 @@ export function Editor() {
           initial={form.mode === 'edit' ? form.product : null}
           category={form.mode === 'new' ? form.category : form.product.category}
           takenIds={takenIds}
-          pending={pending}
+          previews={previews}
           onCancel={() => setForm(null)}
           onSubmit={commitForm}
         />
