@@ -39,7 +39,7 @@
     {
       "id": "vela-tenesse",
       "category": "velas",
-      "name": "Vela en vaso Tenesse",
+      "name": "Vela en vaso Tennessee",
       "detail": "Aroma a elección",
       "price": 17500,
       "image": null,
@@ -48,7 +48,7 @@
     {
       "id": "vela-tenesse-gel",
       "category": "velas",
-      "name": "Vela en vaso Tenesse",
+      "name": "Vela en vaso Tennessee",
       "detail": "Parafina en gel · aroma a elección",
       "price": 19200,
       "image": null,
@@ -78,7 +78,7 @@
       "name": "Vela arco iris",
       "detail": "Moldeada · aroma a elección",
       "price": 22150,
-      "image": null,
+      "image": "/products/vela-arco-iris-1790019108243.webp",
       "visible": true
     },
     {
