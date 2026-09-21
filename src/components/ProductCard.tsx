@@ -1,8 +1,23 @@
+import { useEffect, useState } from 'react'
 import { formatPrice, type Product } from '../data/products'
-import { productInquiryMessage, whatsappLink } from '../lib/whatsapp'
-import { WhatsAppIcon } from './Icons'
+import { copyToClipboard, instagramDmLink, productInquiryMessage } from '../lib/instagram'
+import { InstagramIcon } from './Icons'
 
 export function ProductCard({ product }: { product: Product }) {
+  const [copied, setCopied] = useState(false)
+
+  useEffect(() => {
+    if (!copied) return
+    const t = setTimeout(() => setCopied(false), 4000)
+    return () => clearTimeout(t)
+  }, [copied])
+
+  // ig.me no acepta texto prearmado: copiamos el mensaje y dejamos que el <a> abra el DM
+  // de forma nativa (sin preventDefault) para que no lo frene ningún bloqueador de popups.
+  function handleInquiry() {
+    void copyToClipboard(productInquiryMessage(product.name, product.detail)).then(setCopied)
+  }
+
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-cream-300/70 bg-cream-50 shadow-[0_1px_2px_rgba(50,46,41,0.04)] transition-shadow hover:shadow-[0_6px_20px_rgba(50,46,41,0.08)]">
       <div className="relative aspect-square overflow-hidden bg-cream-200">
@@ -40,15 +55,19 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
 
         <a
-          href={whatsappLink(productInquiryMessage(product.name, product.detail))}
+          href={instagramDmLink()}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleInquiry}
           className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-sage-500 px-4 py-2.5 text-sm font-medium text-cream-50 transition-colors hover:bg-sage-600"
         >
-          <WhatsAppIcon className="h-4 w-4 shrink-0" />
+          <InstagramIcon className="h-4 w-4 shrink-0" />
           <span className="sm:hidden">Consultar</span>
-          <span className="hidden sm:inline">Consultar por WhatsApp</span>
+          <span className="hidden sm:inline">Consultar por Instagram</span>
         </a>
+        <p role="status" aria-live="polite" className="mt-2 min-h-4 text-center text-xs text-sage-700">
+          {copied && 'Mensaje copiado, pegalo en el chat ✓'}
+        </p>
       </div>
     </article>
   )

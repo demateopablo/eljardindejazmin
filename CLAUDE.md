@@ -7,12 +7,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Single-page marketing/catalog site for **El Jardín de Jazmín**, a small home-based artisanal
 aromatherapy business (scented candles, reed diffusers, wax melts, handmade soaps) in Tres Arroyos,
 Buenos Aires, Argentina. Content and UI copy are in Argentine Spanish (voseo). Sales happen via
-WhatsApp/Instagram — there is deliberately **no cart, checkout, or customer login**. The only
+Instagram DM only — there is deliberately **no cart, checkout, or customer login**. The only
 backend is a handful of Vercel Functions behind the owner's admin panel (see below).
 
 The full original brief lives in `prompt-claude-code-el-jardin-de-jazmin.md`; the hard rules from it:
 
 - Never show or mention a street address — only the city ("Tres Arroyos"). No map pins.
+- Never publish a phone number or WhatsApp link: the owner does not want to expose her personal
+  number. Every contact CTA opens the Instagram DM (`site.instagramDmUrl`, an `ig.me/m/…` link).
 - Never invent testimonials, reviews, customer counts, or prices. Missing data stays as a visible
   placeholder (`[Foto pendiente]`, "Precio a consultar").
 - Do not alter or recreate the logo; do not change its colors/typography.
@@ -45,7 +47,7 @@ declared in `src/index.css` under `@theme`, there is no `tailwind.config`). Depl
 ## Architecture (public site)
 
 - `src/App.tsx` composes the page top-to-bottom: `Header` (sticky) → `Hero` → `Historia` →
-  `Catalogo` → `ComoComprar` → `Seguinos` → `Footer`, plus the fixed `WhatsAppFloat` button.
+  `Catalogo` → `ComoComprar` → `Seguinos` → `Footer`, plus the fixed `InstagramFloat` button.
   Sections have `id`s used by anchor links; `section[id]` gets `scroll-margin-top` in `index.css`.
 - **Content is data-driven**: `src/data/site.ts` (brand/contact constants),
   `src/data/products.json` (the editable catalog — written by the admin panel; don't hand-edit
@@ -55,9 +57,12 @@ declared in `src/index.css` under `@theme`, there is no `tailwind.config`). Depl
   `price: null` renders "Precio a consultar".
 - `src/data/productsSchema.ts` is the single zod schema for products, shared by the panel and the
   API. The public bundle deliberately does NOT import zod — `products.ts` just casts the JSON.
-- `src/lib/whatsapp.ts` builds every `wa.me` link, including the per-product prefilled message
-  ("Hola! Quiero consultar por …").
-- `Catalogo` is the only stateful public component (active tab). Category tabs use ARIA
+- `src/lib/instagram.ts` provides the DM link (`instagramDmLink()`), the per-product message
+  (`productInquiryMessage`, "Hola! Quiero consultar por …") and `copyToClipboard`. `ig.me` does
+  NOT accept prefilled text, so `ProductCard` copies the message to the clipboard on click and
+  lets the `<a target="_blank">` open the DM natively (no `preventDefault`/`window.open`).
+- `Catalogo` (active tab) and `ProductCard` ("mensaje copiado" notice) are the only stateful
+  public components. Category tabs use ARIA
   `tablist`/`tab`/`tabpanel`.
 - Design tokens: `sage-*` (brand green), `cream-*` (backgrounds — never pure white), `blush`,
   `peach`, `gold` (soft accents), `ink-*` (warm text). Fonts: `font-display` (Cormorant Garamond,

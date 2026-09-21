@@ -5,7 +5,7 @@ import { Catalogo } from './components/Catalogo'
 import { ComoComprar } from './components/ComoComprar'
 import { Seguinos } from './components/Seguinos'
 import { Footer } from './components/Footer'
-import { WhatsAppFloat } from './components/WhatsAppFloat'
+import { InstagramFloat } from './components/InstagramFloat'
 
 export default function App() {
   return (
@@ -19,7 +19,7 @@ export default function App() {
         <Seguinos />
       </main>
       <Footer />
-      <WhatsAppFloat />
+      <InstagramFloat />
     </>
   )
 }

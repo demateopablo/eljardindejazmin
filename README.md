@@ -3,7 +3,7 @@
 Sitio web de **El Jardín de Jazmín**, emprendimiento de aromaterapia artesanal de
 Tres Arroyos (Buenos Aires): velas aromáticas de diseño, difusores de aroma, wax melts
 y jabones artesanales. Es una vidriera/catálogo de una sola página; la venta se hace
-por Instagram y WhatsApp.
+por mensaje directo de Instagram.
 
 ## Desarrollo
 
@@ -22,7 +22,7 @@ npm run assets         # regenera logo recortado, og-image.jpg, favicons y tags 
 - `src/data/products.json` — productos, precios y fotos. **Lo escribe el panel `/admin`**; no
   editarlo a mano salvo migraciones.
 - `src/data/products.ts` — categorías y lista de aromas.
-- `src/data/site.ts` — nombre, taglines, WhatsApp, redes, horario, ID de Clarity.
+- `src/data/site.ts` — nombre, taglines, link al DM de Instagram, redes, horario, ID de Clarity.
 - `src/components/Historia.tsx` — texto de "Nuestra historia".
 - `index.html` — title, meta description, Open Graph, JSON-LD.
 - `assets/` — archivos fuente (logo, og-image, `tags/` de aromas). No se sirven directamente:

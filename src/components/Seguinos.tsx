@@ -1,6 +1,5 @@
 import { site } from '../data/site'
-import { whatsappLink } from '../lib/whatsapp'
-import { FacebookIcon, InstagramIcon, WhatsAppIcon } from './Icons'
+import { FacebookIcon, InstagramIcon } from './Icons'
 import { SectionTitle } from './SectionTitle'
 
 const socials = [
@@ -16,12 +15,6 @@ const socials = [
     href: site.facebookUrl,
     Icon: FacebookIcon,
   },
-  {
-    name: 'WhatsApp',
-    label: site.whatsappDisplay,
-    href: whatsappLink(),
-    Icon: WhatsAppIcon,
-  },
 ]
 
 export function Seguinos() {
@@ -31,10 +24,10 @@ export function Seguinos() {
         <SectionTitle
           eyebrow="Seguinos"
           title="Mirá las novedades"
-          intro="Subimos los productos nuevos, aromas de temporada y algunas escenas del jardín."
+          intro="Subimos los productos nuevos, aromas de temporada y algunas escenas del jardín. Por Instagram también nos escribís para hacer tu pedido."
         />
 
-        <ul className="mx-auto mt-10 grid max-w-2xl gap-4 sm:grid-cols-3">
+        <ul className="mx-auto mt-10 grid max-w-xl gap-4 sm:grid-cols-2">
           {socials.map(({ name, label, href, Icon }) => (
             <li key={name}>
               <a

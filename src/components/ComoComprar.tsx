@@ -1,6 +1,6 @@
 import { site } from '../data/site'
-import { whatsappLink, WA_GENERIC_MESSAGE } from '../lib/whatsapp'
-import { WhatsAppIcon } from './Icons'
+import { instagramDmLink } from '../lib/instagram'
+import { InstagramIcon } from './Icons'
 import { SectionTitle } from './SectionTitle'
 import { BotanicalDivider } from './BotanicalDivider'
 
@@ -12,13 +12,13 @@ const steps = [
   },
   {
     n: '2',
-    title: 'Escribinos por WhatsApp',
-    text: 'Te confirmamos disponibilidad, precio y tiempos. Si es un regalo, también lo armamos.',
+    title: 'Escribinos por Instagram',
+    text: 'Mandanos un mensaje directo con lo que te gustó. Te confirmamos disponibilidad, precio y tiempos. Si es un regalo, también lo armamos.',
   },
   {
     n: '3',
     title: 'Coordinamos la entrega',
-    text: `Entregas y retiros en ${site.city}, a coordinar por WhatsApp.`,
+    text: `Entregas y retiros en ${site.city}, a coordinar por mensaje.`,
   },
 ]
 
@@ -28,7 +28,7 @@ export function ComoComprar() {
       <div className="mx-auto max-w-6xl px-6">
         <SectionTitle
           eyebrow="Cómo comprar"
-          title="Simple, como charlar por WhatsApp"
+          title="Simple, como charlar por Instagram"
           intro="No tenemos tienda online ni local abierto al público: trabajamos desde casa y vendemos directo."
         />
 
@@ -65,14 +65,20 @@ export function ComoComprar() {
 
         <div className="mt-10 text-center">
           <a
-            href={whatsappLink(WA_GENERIC_MESSAGE)}
+            href={instagramDmLink()}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-sage-500 px-7 py-3 text-sm font-medium tracking-wide text-cream-50 shadow-sm transition-colors hover:bg-sage-600"
           >
-            <WhatsAppIcon className="h-4 w-4" />
-            Escribinos por WhatsApp
+            <InstagramIcon className="h-4 w-4" />
+            Escribinos por Instagram
           </a>
+          <p className="mt-3 text-sm text-ink-500">
+            O buscanos en la app como{' '}
+            <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-sage-700 underline decoration-sage-300 underline-offset-4 hover:text-sage-600">
+              @{site.instagramHandle}
+            </a>
+          </p>
         </div>
       </div>
     </section>

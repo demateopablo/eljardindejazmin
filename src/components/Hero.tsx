@@ -1,7 +1,7 @@
 import logo from '../assets/logo.webp'
 import { site } from '../data/site'
-import { whatsappLink, WA_GENERIC_MESSAGE } from '../lib/whatsapp'
-import { ArrowDownIcon, WhatsAppIcon } from './Icons'
+import { instagramDmLink } from '../lib/instagram'
+import { ArrowDownIcon, InstagramIcon } from './Icons'
 import { BotanicalDivider } from './BotanicalDivider'
 
 export function Hero() {
@@ -41,13 +41,13 @@ export function Hero() {
             <ArrowDownIcon className="h-4 w-4" />
           </a>
           <a
-            href={whatsappLink(WA_GENERIC_MESSAGE)}
+            href={instagramDmLink()}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full border border-sage-400 bg-cream-50/60 px-7 py-3 text-sm font-medium tracking-wide text-sage-700 transition-colors hover:bg-sage-100"
           >
-            <WhatsAppIcon className="h-4 w-4" />
-            Escribinos por WhatsApp
+            <InstagramIcon className="h-4 w-4" />
+            Escribinos por Instagram
           </a>
         </div>
 

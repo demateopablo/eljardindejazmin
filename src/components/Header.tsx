@@ -1,7 +1,7 @@
 import logo from '../assets/logo.webp'
 import { site } from '../data/site'
-import { whatsappLink, WA_GENERIC_MESSAGE } from '../lib/whatsapp'
-import { WhatsAppIcon } from './Icons'
+import { instagramDmLink } from '../lib/instagram'
+import { InstagramIcon } from './Icons'
 
 const links = [
   { href: '#historia', label: 'Nuestra historia' },
@@ -26,14 +26,14 @@ export function Header() {
         </nav>
 
         <a
-          href={whatsappLink(WA_GENERIC_MESSAGE)}
+          href={instagramDmLink()}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 rounded-full border border-sage-300 px-3.5 py-1.5 text-sm text-sage-700 transition-colors hover:bg-sage-100"
         >
-          <WhatsAppIcon className="h-4 w-4" />
+          <InstagramIcon className="h-4 w-4" />
           <span className="hidden sm:inline">Escribinos</span>
-          <span className="sm:hidden">WhatsApp</span>
+          <span className="sm:hidden">Instagram</span>
         </a>
       </div>
     </header>
