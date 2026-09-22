@@ -1,13 +1,29 @@
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { categories, products, type CategoryId } from '../data/products'
 import { ProductCard } from './ProductCard'
 import { Aromas } from './Aromas'
 import { SectionTitle } from './SectionTitle'
 
+// Lazy: la biblioteca del lightbox (y su CSS) se bajan recién cuando alguien toca una foto
+const ProductLightbox = lazy(() => import('./ProductLightbox'))
+
 export function Catalogo() {
   const [active, setActive] = useState<CategoryId>(categories[0].id)
+  /** Índice (en `withPhoto`) de la foto abierta en el lightbox; null = cerrado */
+  const [lightbox, setLightbox] = useState<number | null>(null)
   const current = categories.find((c) => c.id === active) ?? categories[0]
   const visible = products.filter((p) => p.category === active)
+  const withPhoto = visible.filter((p) => p.image)
+
+  function selectCategory(id: CategoryId) {
+    setActive(id)
+    setLightbox(null)
+  }
+
+  function openImage(id: string) {
+    const i = withPhoto.findIndex((p) => p.id === id)
+    if (i !== -1) setLightbox(i)
+  }
 
   return (
     <section id="catalogo" className="py-16 sm:py-24">
@@ -34,7 +50,7 @@ export function Catalogo() {
                 id={`tab-${c.id}`}
                 aria-selected={selected}
                 aria-controls={`panel-${c.id}`}
-                onClick={() => setActive(c.id)}
+                onClick={() => selectCategory(c.id)}
                 className={`shrink-0 rounded-full border px-4 py-2 text-sm tracking-wide transition-colors ${
                   selected
                     ? 'border-sage-500 bg-sage-500 text-cream-50'
@@ -58,7 +74,7 @@ export function Catalogo() {
           {visible.length > 0 ? (
             <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
               {visible.map((p) => (
-                <ProductCard key={p.id} product={p} />
+                <ProductCard key={p.id} product={p} onOpenImage={openImage} />
               ))}
             </div>
           ) : (
@@ -68,6 +84,12 @@ export function Catalogo() {
 
         <Aromas />
       </div>
+
+      {lightbox !== null && (
+        <Suspense fallback={null}>
+          <ProductLightbox products={withPhoto} index={lightbox} onClose={() => setLightbox(null)} />
+        </Suspense>
+      )}
     </section>
   )
 }

@@ -1,11 +1,11 @@
 import logo from '../assets/logo.webp'
 import { site } from '../data/site'
 import { instagramDmLink } from '../lib/instagram'
-import { InstagramIcon } from './Icons'
+import { InstagramIcon, LockIcon } from './Icons'
 
 const links = [
-  { href: '#historia', label: 'Nuestra historia' },
   { href: '#catalogo', label: 'Catálogo' },
+  { href: '#historia', label: 'Nuestra historia' },
   { href: '#como-comprar', label: 'Cómo comprar' },
 ]
 
@@ -25,16 +25,29 @@ export function Header() {
           ))}
         </nav>
 
-        <a
-          href={instagramDmLink()}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-full border border-sage-300 px-3.5 py-1.5 text-sm text-sage-700 transition-colors hover:bg-sage-100"
-        >
-          <InstagramIcon className="h-4 w-4" />
-          <span className="hidden sm:inline">Escribinos</span>
-          <span className="sm:hidden">Instagram</span>
-        </a>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <a
+            href={instagramDmLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-sage-300 px-3.5 py-1.5 text-sm text-sage-700 transition-colors hover:bg-sage-100"
+          >
+            <InstagramIcon className="h-4 w-4" />
+            <span className="hidden sm:inline">Escribinos</span>
+            <span className="sm:hidden">Instagram</span>
+          </a>
+
+          {/* Acceso al panel de Mar: discreto (solo ícono), es otra página (admin.html), no un ancla */}
+          <a
+            href="/admin"
+            rel="nofollow"
+            aria-label="Panel de administración"
+            title="Panel"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full text-ink-500/60 transition-colors hover:bg-sage-100 hover:text-sage-700"
+          >
+            <LockIcon className="h-4 w-4" />
+          </a>
+        </div>
       </div>
     </header>
   )

@@ -46,9 +46,15 @@ declared in `src/index.css` under `@theme`, there is no `tailwind.config`). Depl
 
 ## Architecture (public site)
 
-- `src/App.tsx` composes the page top-to-bottom: `Header` (sticky) → `Hero` → `Historia` →
-  `Catalogo` → `ComoComprar` → `Seguinos` → `Footer`, plus the fixed `InstagramFloat` button.
-  Sections have `id`s used by anchor links; `section[id]` gets `scroll-margin-top` in `index.css`.
+- `src/App.tsx` composes the page top-to-bottom: `Header` (sticky) → `Hero` → `Catalogo` →
+  `Historia` → `InstagramFeed` → `ComoComprar` → `Seguinos` → `Footer`, plus the fixed
+  `InstagramFloat` button. Products come first on purpose (visitors arrive from Instagram); the
+  owner's letter (`Historia`) sits below as a trust block. Sections have `id`s used by anchor
+  links; `section[id]` gets `scroll-margin-top` in `index.css`. Backgrounds alternate between the
+  body's `cream-100` and `bg-cream-50`; cards are `bg-cream-50`, so never put a card grid on a
+  `bg-cream-50` section.
+- The header carries a discreet lock icon linking to `/admin` (the owner's panel) — keep it
+  icon-only with `aria-label`.
 - **Content is data-driven**: `src/data/site.ts` (brand/contact constants),
   `src/data/products.json` (the editable catalog — written by the admin panel; don't hand-edit
   except for migrations) and `src/data/products.ts` (categories, `aromas` list, `formatPrice`,
@@ -61,9 +67,19 @@ declared in `src/index.css` under `@theme`, there is no `tailwind.config`). Depl
   (`productInquiryMessage`, "Hola! Quiero consultar por …") and `copyToClipboard`. `ig.me` does
   NOT accept prefilled text, so `ProductCard` copies the message to the clipboard on click and
   lets the `<a target="_blank">` open the DM natively (no `preventDefault`/`window.open`).
-- `Catalogo` (active tab) and `ProductCard` ("mensaje copiado" notice) are the only stateful
-  public components. Category tabs use ARIA
-  `tablist`/`tab`/`tabpanel`.
+- `Catalogo` (active tab + open lightbox index), `ProductCard` ("mensaje copiado" notice, via
+  `src/lib/useProductInquiry.ts`, shared with the lightbox) and `InstagramFeed` are the only
+  stateful public components. Category tabs use ARIA `tablist`/`tab`/`tabpanel`.
+- **Lightbox**: product photos are buttons that open `src/components/ProductLightbox.tsx`
+  (`yet-another-react-lightbox` + Zoom + Captions, themed with YARL CSS vars over the Tailwind
+  tokens). `Catalogo` imports it with `React.lazy` and mounts it only while open, so the library
+  and its CSS are a separate chunk that never loads on the initial visit. Slides are the products
+  with a photo in the active category; captions show name · detail · price and the same
+  "Consultar por Instagram" CTA.
+- **Instagram feed**: `InstagramFeed` is the only public component that calls a Function
+  (`GET /api/instagram/feed`, see below). It renders 3 skeleton cards while loading and returns
+  `null` when the response is empty or fails (so with plain `npm run dev`, without Functions, the
+  section simply doesn't show). No zod on the client — the response type is a local interface.
 - Design tokens: `sage-*` (brand green), `cream-*` (backgrounds — never pure white), `blush`,
   `peach`, `gold` (soft accents), `ink-*` (warm text). Fonts: `font-display` (Cormorant Garamond,
   italic for headings) and `font-body` (Jost), loaded from Google Fonts in `index.html`.
@@ -86,6 +102,17 @@ Lets the owner edit products, prices and photos without touching code. End-user 
   `src/data/products.json` and `public/products/*.webp`. The push triggers the Vercel deploy —
   that *is* the publish step (~1 min), so the panel warns that a reload before the deploy shows
   stale data.
+- **Instagram feed** (`docs/instagram.md` has the one-time setup): `server/instagram.ts` talks to
+  the Instagram API with Instagram Login (`graph.instagram.com/v25.0/me/media`). The long-lived
+  token (60 days) lives in **Vercel Edge Config** (`instagramToken`, `instagramTokenRefreshedAt`),
+  read with `@vercel/edge-config`; `INSTAGRAM_ACCESS_TOKEN` is only the bootstrap/local fallback.
+  `GET /api/instagram/feed` is public, returns `{ posts }` with `s-maxage=3600` (or an empty list
+  with `s-maxage=300` on any error — it must never fail towards the site).
+  `GET /api/cron/instagram-refresh` runs daily via `vercel.json` `crons`, requires
+  `Authorization: Bearer $CRON_SECRET`, refreshes the token when it is ≥ 7 days old and writes it
+  back through the Vercel REST API (`VERCEL_API_TOKEN`, `EDGE_CONFIG_ID`, optional
+  `VERCEL_TEAM_ID`). Handlers can be exercised without Vercel by bundling with esbuild and
+  mocking `globalThis.fetch`.
 - **Functions** use the Web signature (`export const POST = handle(async (req: Request) => …)`).
   Shared server code lives in `server/` (outside `api/`, so it is never exposed as a route):
   `http.ts` (`handle`, `HttpError`, `json`, `readJson`, `assertSameOrigin` for CSRF),
@@ -97,7 +124,9 @@ Lets the owner edit products, prices and photos without touching code. End-user 
 - **Env vars** (Vercel project + `.env.local`, template in `.env.example`): `GOOGLE_CLIENT_ID`,
   `VITE_GOOGLE_CLIENT_ID`, `ADMIN_EMAILS`, `SESSION_SECRET`, `GITHUB_TOKEN` (fine-grained PAT,
   this repo only, Contents read/write), `GITHUB_REPO`, `GITHUB_BRANCH` (optional, default `main`).
-  `GITHUB_TOKEN` must never reach the client.
+  For the Instagram feed: `INSTAGRAM_ACCESS_TOKEN`, `EDGE_CONFIG` (injected by Vercel when the
+  store is connected), `EDGE_CONFIG_ID`, `VERCEL_API_TOKEN`, `VERCEL_TEAM_ID` (optional),
+  `CRON_SECRET`. `GITHUB_TOKEN` and `VERCEL_API_TOKEN` must never reach the client.
 - Zod error messages are Spanish globally (`z.config(z.locales.es())` in `productsSchema.ts`).
 - `erasableSyntaxOnly` is on: no TS parameter properties or enums anywhere (incl. `server/`).
 

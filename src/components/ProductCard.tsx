@@ -1,34 +1,34 @@
-import { useEffect, useState } from 'react'
 import { formatPrice, type Product } from '../data/products'
-import { copyToClipboard, instagramDmLink, productInquiryMessage } from '../lib/instagram'
+import { instagramDmLink } from '../lib/instagram'
+import { useProductInquiry } from '../lib/useProductInquiry'
 import { InstagramIcon } from './Icons'
 
-export function ProductCard({ product }: { product: Product }) {
-  const [copied, setCopied] = useState(false)
+interface Props {
+  product: Product
+  /** Si se pasa, la foto se vuelve un botón que abre el lightbox (ver Catalogo). */
+  onOpenImage?: (id: string) => void
+}
 
-  useEffect(() => {
-    if (!copied) return
-    const t = setTimeout(() => setCopied(false), 4000)
-    return () => clearTimeout(t)
-  }, [copied])
-
-  // ig.me no acepta texto prearmado: copiamos el mensaje y dejamos que el <a> abra el DM
-  // de forma nativa (sin preventDefault) para que no lo frene ningún bloqueador de popups.
-  function handleInquiry() {
-    void copyToClipboard(productInquiryMessage(product.name, product.detail)).then(setCopied)
-  }
+export function ProductCard({ product, onOpenImage }: Props) {
+  const { copied, handleInquiry } = useProductInquiry(product)
+  const alt = product.detail ? `${product.name} — ${product.detail}` : product.name
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-cream-300/70 bg-cream-50 shadow-[0_1px_2px_rgba(50,46,41,0.04)] transition-shadow hover:shadow-[0_6px_20px_rgba(50,46,41,0.08)]">
       <div className="relative aspect-square overflow-hidden bg-cream-200">
         {product.image ? (
-          <img
-            src={product.image}
-            alt={product.detail ? `${product.name} — ${product.detail}` : product.name}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-          />
+          onOpenImage ? (
+            <button
+              type="button"
+              onClick={() => onOpenImage(product.id)}
+              aria-label={`Ver más grande: ${product.name}`}
+              className="block h-full w-full cursor-zoom-in focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-sage-500"
+            >
+              <ProductImage src={product.image} alt={alt} />
+            </button>
+          ) : (
+            <ProductImage src={product.image} alt={alt} />
+          )
         ) : (
           <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-gradient-to-br from-cream-200 via-peach-200 to-sage-100 text-ink-500">
             <svg viewBox="0 0 24 24" className="h-8 w-8 opacity-50" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
@@ -70,5 +70,17 @@ export function ProductCard({ product }: { product: Product }) {
         </p>
       </div>
     </article>
+  )
+}
+
+function ProductImage({ src, alt }: { src: string; alt: string }) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+    />
   )
 }

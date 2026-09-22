@@ -13,10 +13,12 @@
     "dev:full": "vercel dev"
   },
   "dependencies": {
+    "@vercel/edge-config": "^1.5.1",
     "google-auth-library": "^11.1.0",
     "jose": "^6.2.12",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "yet-another-react-lightbox": "^3.32.2",
     "zod": "^4.6.5"
   },
   "devDependencies": {
