@@ -134,6 +134,24 @@
       "price": 21500,
       "image": "/products/difusor-de-varillas-1790086833630.webp",
       "visible": true
+    },
+    {
+      "id": "vela-caracola",
+      "category": "velas",
+      "name": "Vela caracola",
+      "detail": "Parafina en gel",
+      "price": null,
+      "image": null,
+      "visible": true
+    },
+    {
+      "id": "vela-octagonal",
+      "category": "velas",
+      "name": "Vela octagonal",
+      "detail": "Aroma a elección",
+      "price": null,
+      "image": null,
+      "visible": true
     }
   ]
 }
