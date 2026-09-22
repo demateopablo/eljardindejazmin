@@ -152,6 +152,15 @@
       "price": null,
       "image": null,
       "visible": true
+    },
+    {
+      "id": "vela-de-agua",
+      "category": "velas",
+      "name": "Vela de agua",
+      "detail": "Aroma y recipiente a elección",
+      "price": null,
+      "image": null,
+      "visible": true
     }
   ]
 }
