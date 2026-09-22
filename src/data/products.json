@@ -55,15 +55,6 @@
       "visible": true
     },
     {
-      "id": "vela-whisky",
-      "category": "velas",
-      "name": "Vela en vaso de whisky",
-      "detail": "Aroma a elección",
-      "price": null,
-      "image": null,
-      "visible": true
-    },
-    {
       "id": "vela-bubble",
       "category": "velas",
       "name": "Vela bubble",
