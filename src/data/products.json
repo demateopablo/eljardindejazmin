@@ -84,7 +84,7 @@
     {
       "id": "difusor-125",
       "category": "difusores",
-      "name": "Difusor de cañas",
+      "name": "Difusor de varillas",
       "detail": "125 cc · envase plástico · aroma a elección",
       "price": 12800,
       "image": null,
@@ -124,6 +124,15 @@
       "detail": "Grande",
       "price": 7160,
       "image": null,
+      "visible": true
+    },
+    {
+      "id": "difusor-de-varillas",
+      "category": "difusores",
+      "name": "Difusor de varillas",
+      "detail": "300cc",
+      "price": 21500,
+      "image": "/products/difusor-de-varillas-1790086833630.webp",
       "visible": true
     }
   ]
