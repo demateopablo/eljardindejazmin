@@ -13,6 +13,11 @@ export function productInquiryMessage(productName: string, detail?: string): str
   return `Hola! Quiero consultar por ${what}.`
 }
 
+/** Mensaje del CTA de souvenirs para eventos (sección Souvenirs). */
+export function eventInquiryMessage(): string {
+  return 'Hola! Quiero consultar por souvenirs para un evento.'
+}
+
 /** Copia texto al portapapeles. Devuelve false si el navegador no lo permite (el link abre igual). */
 export async function copyToClipboard(text: string): Promise<boolean> {
   try {

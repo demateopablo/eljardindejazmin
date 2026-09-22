@@ -47,12 +47,16 @@ declared in `src/index.css` under `@theme`, there is no `tailwind.config`). Depl
 ## Architecture (public site)
 
 - `src/App.tsx` composes the page top-to-bottom: `Header` (sticky) → `Hero` → `Catalogo` →
-  `Historia` → `InstagramFeed` → `ComoComprar` → `Seguinos` → `Footer`, plus the fixed
-  `InstagramFloat` button. Products come first on purpose (visitors arrive from Instagram); the
+  `Souvenirs` → `Historia` → `InstagramFeed` → `ComoComprar` → `Seguinos` → `Footer`, plus the
+  fixed `InstagramFloat` button. Products come first on purpose (visitors arrive from Instagram); the
   owner's letter (`Historia`) sits below as a trust block. Sections have `id`s used by anchor
   links; `section[id]` gets `scroll-margin-top` in `index.css`. Backgrounds alternate between the
-  body's `cream-100` and `bg-cream-50`; cards are `bg-cream-50`, so never put a card grid on a
-  `bg-cream-50` section.
+  body's `cream-100` and `bg-cream-50` (`Souvenirs` uses a soft `bg-blush-200/40` band instead);
+  cards are `bg-cream-50`, so never put a card grid on a `bg-cream-50` section.
+- `Souvenirs` (custom orders for events) lists example occasions and a 3-step "how it works".
+  It deliberately publishes no minimum quantities, lead times or prices — everything is "to be
+  discussed by DM" — and must not promise services the owner hasn't confirmed (named tags,
+  packaging…). Its CTA copies `eventInquiryMessage()` via `useInquiry` (`src/lib/useProductInquiry.ts`).
 - The header carries a discreet lock icon linking to `/admin` (the owner's panel) — keep it
   icon-only with `aria-label`.
 - **Content is data-driven**: `src/data/site.ts` (brand/contact constants),

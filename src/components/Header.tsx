@@ -5,6 +5,7 @@ import { InstagramIcon, LockIcon } from './Icons'
 
 const links = [
   { href: '#catalogo', label: 'Catálogo' },
+  { href: '#souvenirs', label: 'Souvenirs' },
   { href: '#historia', label: 'Nuestra historia' },
   { href: '#como-comprar', label: 'Cómo comprar' },
 ]

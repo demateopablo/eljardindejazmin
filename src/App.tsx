@@ -3,6 +3,7 @@ import { Hero } from './components/Hero'
 import { Historia } from './components/Historia'
 import { InstagramFeed } from './components/InstagramFeed'
 import { Catalogo } from './components/Catalogo'
+import { Souvenirs } from './components/Souvenirs'
 import { ComoComprar } from './components/ComoComprar'
 import { Seguinos } from './components/Seguinos'
 import { Footer } from './components/Footer'
@@ -15,6 +16,7 @@ export default function App() {
       <main>
         <Hero />
         <Catalogo />
+        <Souvenirs />
         <Historia />
         <InstagramFeed />
         <ComoComprar />
