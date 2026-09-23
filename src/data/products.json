@@ -6,7 +6,7 @@
       "name": "Vela en vaso Gourmet",
       "detail": "Aroma a elección",
       "price": 18200,
-      "image": null,
+      "image": "/products/vela-gourmet-1790177263685.webp",
       "visible": true
     },
     {
@@ -21,10 +21,10 @@
     {
       "id": "vela-imperial",
       "category": "velas",
-      "name": "Vela en vaso Imperial",
+      "name": "Vela en vaso Volcán",
       "detail": "Aroma a elección",
       "price": 13000,
-      "image": null,
+      "image": "/products/vela-imperial-1790177318040.webp",
       "visible": true
     },
     {
@@ -33,7 +33,7 @@
       "name": "Vela fondo de mar en vaso Imperial",
       "detail": "Parafina en gel · aroma a elección",
       "price": 15200,
-      "image": null,
+      "image": "/products/vela-imperial-gel-1790177247366.webp",
       "visible": true
     },
     {
