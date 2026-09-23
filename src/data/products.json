@@ -188,6 +188,15 @@
       "price": 15200,
       "image": "/products/producto-1790177060223.webp",
       "visible": true
+    },
+    {
+      "id": "vela-inclinada-en-vaso-gourmet",
+      "category": "velas",
+      "name": "Vela inclinada en vaso Gourmet",
+      "detail": "Aroma a elección",
+      "price": 20500,
+      "image": "/products/producto-1790191572379.webp",
+      "visible": true
     }
   ]
 }
