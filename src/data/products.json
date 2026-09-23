@@ -197,6 +197,15 @@
       "price": 20500,
       "image": "/products/producto-1790191572379.webp",
       "visible": true
+    },
+    {
+      "id": "vela-inclinada-en-vaso-imperial",
+      "category": "velas",
+      "name": "Vela inclinada en vaso Imperial",
+      "detail": "Aroma a elección",
+      "price": 15200,
+      "image": null,
+      "visible": true
     }
   ]
 }
