@@ -12,7 +12,7 @@
     {
       "id": "vela-gourmet-gel",
       "category": "velas",
-      "name": "Vela en vaso Gourmet",
+      "name": "Vela de agua en vaso Gourmet",
       "detail": "Parafina en gel · aroma a elección",
       "price": 20500,
       "image": null,
@@ -30,7 +30,7 @@
     {
       "id": "vela-imperial-gel",
       "category": "velas",
-      "name": "Vela en vaso Imperial",
+      "name": "Vela fondo de mar en vaso Imperial",
       "detail": "Parafina en gel · aroma a elección",
       "price": 15200,
       "image": null,
@@ -39,10 +39,10 @@
     {
       "id": "vela-tenesse",
       "category": "velas",
-      "name": "Vela en vaso Tennessee",
+      "name": "Vela Margarita en vaso Tennessee",
       "detail": "Aroma a elección",
       "price": 17500,
-      "image": null,
+      "image": "/products/vela-tenesse-1790176867782.webp",
       "visible": true
     },
     {
@@ -78,7 +78,7 @@
       "name": "Vela en caramelera",
       "detail": "Chica · aroma a elección",
       "price": 10500,
-      "image": null,
+      "image": "/products/caramelera-chica-1790175730598.webp",
       "visible": true
     },
     {
@@ -87,7 +87,7 @@
       "name": "Difusor de varillas",
       "detail": "125 cc · envase plástico · aroma a elección",
       "price": 12800,
-      "image": null,
+      "image": "/products/difusor-125-1790176803809.webp",
       "visible": true
     },
     {
@@ -156,10 +156,37 @@
     {
       "id": "vela-de-agua",
       "category": "velas",
-      "name": "Vela de agua",
-      "detail": "Aroma y recipiente a elección",
-      "price": null,
-      "image": "/products/vela-de-agua-1790087873712.webp",
+      "name": "Vela de agua en vaso Imperial",
+      "detail": "Aroma a elección",
+      "price": 15200,
+      "image": null,
+      "visible": true
+    },
+    {
+      "id": "vela-marmolada-en-vaso-imperial",
+      "category": "velas",
+      "name": "Vela marmolada en vaso Imperial",
+      "detail": "Aroma a elección",
+      "price": 13000,
+      "image": "/products/vela-marmolada-en-vaso-imperial-1790177006642.webp",
+      "visible": true
+    },
+    {
+      "id": "vela-botanica-en-vaso-imperial",
+      "category": "velas",
+      "name": "Vela botánica en vaso Imperial",
+      "detail": "Aroma a elección",
+      "price": 13500,
+      "image": "/products/producto-1790177019397.webp",
+      "visible": true
+    },
+    {
+      "id": "vela-combinada-en-vaso-imperial",
+      "category": "velas",
+      "name": "Vela combinada en vaso Imperial",
+      "detail": "Aroma y color a elección",
+      "price": 15200,
+      "image": "/products/producto-1790177060223.webp",
       "visible": true
     }
   ]
