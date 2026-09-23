@@ -206,6 +206,15 @@
       "price": 15200,
       "image": null,
       "visible": true
+    },
+    {
+      "id": "vela-de-agua-en-vaso-tennessee",
+      "category": "velas",
+      "name": "Vela de agua en vaso Tennessee",
+      "detail": "Aroma a elección",
+      "price": 19200,
+      "image": null,
+      "visible": true
     }
   ]
 }
