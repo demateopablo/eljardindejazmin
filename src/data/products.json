@@ -17,7 +17,9 @@
       "name": "Vela de agua en vaso Gourmet",
       "detail": "Parafina en gel · aroma a elección",
       "price": 20500,
-      "images": [],
+      "images": [
+        "/products/vela-gourmet-gel-1790308296941.webp"
+      ],
       "visible": true
     },
     {
@@ -57,9 +59,11 @@
       "id": "vela-tenesse-gel",
       "category": "velas",
       "name": "Vela en vaso Tennessee",
-      "detail": "Parafina en gel · aroma a elección",
-      "price": 19200,
-      "images": [],
+      "detail": "Aroma a elección",
+      "price": null,
+      "images": [
+        "/products/vela-tenesse-gel-1790308417810.webp"
+      ],
       "visible": true
     },
     {
@@ -161,7 +165,9 @@
       "name": "Vela caracola",
       "detail": "Parafina en gel",
       "price": null,
-      "images": [],
+      "images": [
+        "/products/vela-caracola-1790308280030.webp"
+      ],
       "visible": true
     },
     {
@@ -170,7 +176,9 @@
       "name": "Vela octagonal",
       "detail": "Aroma a elección",
       "price": null,
-      "images": [],
+      "images": [
+        "/products/vela-octagonal-1790308261643.webp"
+      ],
       "visible": true
     },
     {
@@ -247,6 +255,61 @@
       "price": 19200,
       "images": [
         "/products/vela-de-agua-en-vaso-tennessee-1790299302863.webp"
+      ],
+      "visible": true
+    },
+    {
+      "id": "vela-en-lata",
+      "category": "velas",
+      "name": "Vela en lata",
+      "detail": "Aroma a elección",
+      "price": null,
+      "images": [
+        "/products/vela-en-lata-1790308336941.webp"
+      ],
+      "visible": true
+    },
+    {
+      "id": "vela-osito",
+      "category": "velas",
+      "name": "Vela osito",
+      "detail": "Chico • Aroma y color a elección",
+      "price": null,
+      "images": [
+        "/products/vela-osito-1790308498455.webp"
+      ],
+      "visible": true
+    },
+    {
+      "id": "vela-sirena",
+      "category": "velas",
+      "name": "Vela sirena",
+      "detail": "Aroma y color a elección",
+      "price": null,
+      "images": [
+        "/products/vela-sirena-1790308541117.webp"
+      ],
+      "visible": true
+    },
+    {
+      "id": "margarita",
+      "category": "velas",
+      "name": "Margarita",
+      "detail": "Aroma y color a elección",
+      "price": 3000,
+      "images": [
+        "/products/margarita-1790308573524.webp"
+      ],
+      "visible": true
+    },
+    {
+      "id": "vela-hojas",
+      "category": "velas",
+      "name": "Vela hojas",
+      "detail": "Tamaño chico • aroma y color a elección",
+      "price": null,
+      "images": [
+        "/products/vela-hojas-1790308605733.webp"
       ],
       "visible": true
     }
