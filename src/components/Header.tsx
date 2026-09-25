@@ -5,6 +5,7 @@ import { InstagramIcon, LockIcon } from './Icons'
 
 const links = [
   { href: '#catalogo', label: 'Catálogo' },
+  { href: '#aromas', label: 'Aromas' },
   { href: '#souvenirs', label: 'Souvenirs' },
   { href: '#historia', label: 'Nuestra historia' },
   { href: '#como-comprar', label: 'Cómo comprar' },
@@ -12,7 +13,7 @@ const links = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-cream-300/60 bg-cream-100/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-cream-300/50 bg-cream-100/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <a href="#inicio" className="flex items-center" aria-label={`${site.name} — inicio`}>
           <img src={logo} alt="" className="h-11 w-auto" width="743" height="455" />

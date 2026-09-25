@@ -8,19 +8,27 @@ import { instagramDmLink } from '../lib/instagram'
 import { useProductInquiry } from '../lib/useProductInquiry'
 import { InstagramIcon } from './Icons'
 
+/** Una foto de la galería: las de cada producto van seguidas, en el orden de la grilla. */
+export interface GallerySlide {
+  product: Product
+  src: string
+  /** Número de foto dentro del producto (1-based) y total de fotos del producto */
+  n: number
+  total: number
+}
+
 interface Props {
-  /** Productos con foto de la categoría activa, en el orden de la grilla */
-  products: Product[]
+  slides: GallerySlide[]
   index: number
   onClose: () => void
 }
 
 /* Colores del sitio sobre las variables de YARL (los tokens de Tailwind v4 existen como CSS vars). */
 const theme: SlotStyles['root'] = {
-  '--yarl__color_backdrop': 'rgba(50, 46, 41, 0.96)',
+  '--yarl__color_backdrop': 'rgba(22, 23, 17, 0.97)',
   '--yarl__color_button': 'var(--color-cream-100)',
   '--yarl__color_button_active': 'var(--color-cream-50)',
-  '--yarl__slide_captions_container_background': 'rgba(50, 46, 41, 0.55)',
+  '--yarl__slide_captions_container_background': 'rgba(22, 23, 17, 0.6)',
   '--yarl__slide_title_color': 'var(--color-cream-50)',
   '--yarl__slide_description_color': 'var(--color-cream-200)',
 }
@@ -32,11 +40,11 @@ const reduceMotion = () =>
  * Foto del producto a pantalla completa (swipe, flechas, pinch-zoom). Catalogo lo importa
  * lazy y solo lo monta mientras está abierto, así la biblioteca no pesa en la visita inicial.
  */
-export default function ProductLightbox({ products, index, onClose }: Props) {
-  const slides = products.map((p) => ({
-    src: p.image ?? '',
-    alt: p.detail ? `${p.name} — ${p.detail}` : p.name,
-    title: p.name,
+export default function ProductLightbox({ slides: gallery, index, onClose }: Props) {
+  const slides = gallery.map(({ product: p, src, n, total }) => ({
+    src,
+    alt: `${p.detail ? `${p.name} — ${p.detail}` : p.name}${total > 1 ? ` (foto ${n} de ${total})` : ''}`,
+    title: total > 1 ? `${p.name} · ${n}/${total}` : p.name,
     description: <Caption product={p} />,
   }))
 

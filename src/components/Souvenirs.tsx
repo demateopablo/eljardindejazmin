@@ -2,6 +2,7 @@ import { eventInquiryMessage, instagramDmLink } from '../lib/instagram'
 import { useInquiry } from '../lib/useProductInquiry'
 import { CakeIcon, GiftIcon, HeartIcon, InstagramIcon, RingsIcon } from './Icons'
 import { SectionTitle } from './SectionTitle'
+import { WaveEdge } from './WaveEdge'
 
 /*
  * Pedidos personalizados para eventos. Solo ejemplos de ocasiones e invitación a
@@ -53,57 +54,69 @@ export function Souvenirs() {
   const { copied, handleInquiry } = useInquiry(eventInquiryMessage())
 
   return (
-    <section id="souvenirs" className="bg-blush-200/40 py-16 sm:py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <SectionTitle
-          eyebrow="Pedidos personalizados"
-          title="Souvenirs para tus celebraciones"
-          intro="Armamos recuerdos con aroma para que tus invitados se lleven un pedacito de la fiesta a casa. Contanos la ocasión y lo pensamos juntos."
-        />
+    <section id="souvenirs" className="relative">
+      <WaveEdge className="text-blush-100" />
+      <div className="bg-blush-100 py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <SectionTitle
+            eyebrow="Pedidos personalizados"
+            title={
+              <>
+                Souvenirs para <em>tus celebraciones</em>
+              </>
+            }
+            intro="Armamos recuerdos con aroma para que tus invitados se lleven un pedacito de la fiesta a casa. Contanos la ocasión y lo pensamos juntos."
+          />
 
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {occasions.map(({ title, text, Icon }) => (
-            <li
-              key={title}
-              className="flex flex-col items-center gap-3 rounded-2xl border border-cream-300/70 bg-cream-50 px-5 py-6 text-center"
+          <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+            {occasions.map(({ title, text, Icon }) => (
+              <li
+                key={title}
+                className="reveal flex flex-col items-center gap-3 rounded-t-[5rem] rounded-b-2xl bg-cream-50 sm:rounded-t-[8rem] px-4 pt-10 pb-6 text-center shadow-[0_14px_30px_-20px_rgba(50,46,41,0.4)] sm:px-6 sm:pt-14"
+              >
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blush-200 text-sage-700">
+                  <Icon className="h-6 w-6" />
+                </span>
+                <h3 className="font-display text-lg leading-snug font-medium text-ink-900 sm:text-xl">{title}</h3>
+                <p className="text-[13px] leading-relaxed text-ink-500 sm:text-sm">{text}</p>
+              </li>
+            ))}
+          </ul>
+
+          <div className="relative mx-auto mt-16 max-w-4xl">
+            {/* hilo punteado que une los pasos (solo en pantallas anchas) */}
+            <div aria-hidden="true" className="absolute top-6 right-[16%] left-[16%] hidden border-t border-dashed border-gold-400/60 sm:block" />
+            <ol className="grid gap-10 sm:grid-cols-3 sm:gap-8">
+            {steps.map((s) => (
+              <li key={s.n} className="reveal relative text-center">
+                <span className="relative inline-flex h-12 w-12 items-center justify-center rounded-full bg-blush-100 font-hand text-4xl text-gold-500">
+                  {s.n}
+                </span>
+                <h3 className="mt-3 font-display text-xl font-medium text-ink-900">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-500">{s.text}</p>
+              </li>
+            ))}
+            </ol>
+          </div>
+
+          <div className="mt-12 text-center">
+            <a
+              href={instagramDmLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleInquiry}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-night-900 px-8 py-3.5 text-sm font-medium tracking-wide text-ember-200 shadow-[0_10px_30px_-10px_rgba(31,32,25,0.6)] transition-colors hover:bg-night-800"
             >
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-sage-100 text-sage-700">
-                <Icon className="h-6 w-6" />
-              </span>
-              <h3 className="font-display text-xl leading-snug text-ink-900">{title}</h3>
-              <p className="text-sm leading-relaxed text-ink-500">{text}</p>
-            </li>
-          ))}
-        </ul>
-
-        <ol className="mx-auto mt-14 grid max-w-4xl gap-8 sm:grid-cols-3">
-          {steps.map((s) => (
-            <li key={s.n} className="text-center">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-sage-300 font-display text-xl text-sage-600">
-                {s.n}
-              </span>
-              <h3 className="mt-4 font-display text-xl text-ink-900">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-500">{s.text}</p>
-            </li>
-          ))}
-        </ol>
-
-        <div className="mt-10 text-center">
-          <a
-            href={instagramDmLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleInquiry}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-sage-500 px-7 py-3 text-sm font-medium tracking-wide text-cream-50 shadow-sm transition-colors hover:bg-sage-600"
-          >
-            <InstagramIcon className="h-4 w-4" />
-            Contanos tu evento
-          </a>
-          <p role="status" aria-live="polite" className="mt-3 min-h-5 text-sm text-sage-700">
-            {copied && 'Mensaje copiado, pegalo en el chat ✓'}
-          </p>
+              <InstagramIcon className="h-4 w-4" />
+              Contanos tu evento
+            </a>
+            <p role="status" aria-live="polite" className="mt-3 min-h-5 text-sm text-sage-700">
+              {copied && 'Mensaje copiado, pegalo en el chat ✓'}
+            </p>
+          </div>
         </div>
       </div>
+      <WaveEdge flip className="text-blush-100" />
     </section>
   )
 }

@@ -6,7 +6,9 @@
       "name": "Vela en vaso Gourmet",
       "detail": "Aroma a elección",
       "price": 18200,
-      "image": "/products/vela-gourmet-1790177263685.webp",
+      "images": [
+        "/products/vela-gourmet-1790177263685.webp"
+      ],
       "visible": true
     },
     {
@@ -15,7 +17,7 @@
       "name": "Vela de agua en vaso Gourmet",
       "detail": "Parafina en gel · aroma a elección",
       "price": 20500,
-      "image": null,
+      "images": [],
       "visible": true
     },
     {
@@ -24,7 +26,9 @@
       "name": "Vela en vaso Volcán",
       "detail": "Aroma a elección",
       "price": 13000,
-      "image": "/products/vela-imperial-1790177318040.webp",
+      "images": [
+        "/products/vela-imperial-1790177318040.webp"
+      ],
       "visible": true
     },
     {
@@ -33,7 +37,9 @@
       "name": "Vela fondo de mar en vaso Imperial",
       "detail": "Parafina en gel · aroma a elección",
       "price": 15200,
-      "image": "/products/vela-imperial-gel-1790177247366.webp",
+      "images": [
+        "/products/vela-imperial-gel-1790177247366.webp"
+      ],
       "visible": true
     },
     {
@@ -42,7 +48,9 @@
       "name": "Vela Margarita en vaso Tennessee",
       "detail": "Aroma a elección",
       "price": 17500,
-      "image": "/products/vela-tenesse-1790176867782.webp",
+      "images": [
+        "/products/vela-tenesse-1790176867782.webp"
+      ],
       "visible": true
     },
     {
@@ -51,7 +59,7 @@
       "name": "Vela en vaso Tennessee",
       "detail": "Parafina en gel · aroma a elección",
       "price": 19200,
-      "image": null,
+      "images": [],
       "visible": true
     },
     {
@@ -60,7 +68,9 @@
       "name": "Vela bubble",
       "detail": "Moldeada · aroma a elección",
       "price": 17400,
-      "image": "/products/vela-bubble-1790087380748.webp",
+      "images": [
+        "/products/vela-bubble-1790087380748.webp"
+      ],
       "visible": true
     },
     {
@@ -69,7 +79,9 @@
       "name": "Vela arco iris",
       "detail": "Moldeada · aroma a elección",
       "price": 22150,
-      "image": "/products/vela-arco-iris-1790019108243.webp",
+      "images": [
+        "/products/vela-arco-iris-1790019108243.webp"
+      ],
       "visible": true
     },
     {
@@ -78,7 +90,9 @@
       "name": "Vela en caramelera",
       "detail": "Chica · aroma a elección",
       "price": 10500,
-      "image": "/products/caramelera-chica-1790175730598.webp",
+      "images": [
+        "/products/caramelera-chica-1790175730598.webp"
+      ],
       "visible": true
     },
     {
@@ -87,7 +101,9 @@
       "name": "Difusor de varillas",
       "detail": "125 cc · envase plástico · aroma a elección",
       "price": 12800,
-      "image": "/products/difusor-125-1790176803809.webp",
+      "images": [
+        "/products/difusor-125-1790176803809.webp"
+      ],
       "visible": true
     },
     {
@@ -96,7 +112,7 @@
       "name": "Wax melts",
       "detail": "Aroma a elección",
       "price": null,
-      "image": null,
+      "images": [],
       "visible": true
     },
     {
@@ -105,7 +121,7 @@
       "name": "Jabón de glicerina",
       "detail": "Chico · cuadrado",
       "price": 5720,
-      "image": null,
+      "images": [],
       "visible": true
     },
     {
@@ -114,7 +130,9 @@
       "name": "Jabón de glicerina",
       "detail": "Chico · oval",
       "price": 3250,
-      "image": "/products/jabon-chico-oval-1790299334670.webp",
+      "images": [
+        "/products/jabon-chico-oval-1790299334670.webp"
+      ],
       "visible": true
     },
     {
@@ -123,7 +141,7 @@
       "name": "Jabón de glicerina",
       "detail": "Grande",
       "price": 7160,
-      "image": null,
+      "images": [],
       "visible": true
     },
     {
@@ -132,7 +150,9 @@
       "name": "Difusor de varillas",
       "detail": "300cc",
       "price": 21500,
-      "image": "/products/difusor-de-varillas-1790086833630.webp",
+      "images": [
+        "/products/difusor-de-varillas-1790086833630.webp"
+      ],
       "visible": true
     },
     {
@@ -141,7 +161,7 @@
       "name": "Vela caracola",
       "detail": "Parafina en gel",
       "price": null,
-      "image": null,
+      "images": [],
       "visible": true
     },
     {
@@ -150,7 +170,7 @@
       "name": "Vela octagonal",
       "detail": "Aroma a elección",
       "price": null,
-      "image": null,
+      "images": [],
       "visible": true
     },
     {
@@ -159,7 +179,9 @@
       "name": "Vela de agua en vaso Imperial",
       "detail": "Aroma a elección",
       "price": 15200,
-      "image": "/products/vela-de-agua-1790299249880.webp",
+      "images": [
+        "/products/vela-de-agua-1790299249880.webp"
+      ],
       "visible": true
     },
     {
@@ -168,7 +190,9 @@
       "name": "Vela marmolada en vaso Imperial",
       "detail": "Aroma a elección",
       "price": 13000,
-      "image": "/products/vela-marmolada-en-vaso-imperial-1790177006642.webp",
+      "images": [
+        "/products/vela-marmolada-en-vaso-imperial-1790177006642.webp"
+      ],
       "visible": true
     },
     {
@@ -177,7 +201,9 @@
       "name": "Vela botánica en vaso Imperial",
       "detail": "Aroma a elección",
       "price": 13500,
-      "image": "/products/producto-1790177019397.webp",
+      "images": [
+        "/products/producto-1790177019397.webp"
+      ],
       "visible": true
     },
     {
@@ -186,7 +212,9 @@
       "name": "Vela combinada en vaso Imperial",
       "detail": "Aroma y color a elección",
       "price": 15200,
-      "image": "/products/producto-1790177060223.webp",
+      "images": [
+        "/products/producto-1790177060223.webp"
+      ],
       "visible": true
     },
     {
@@ -195,7 +223,9 @@
       "name": "Vela inclinada en vaso Gourmet",
       "detail": "Aroma a elección",
       "price": 20500,
-      "image": "/products/producto-1790191572379.webp",
+      "images": [
+        "/products/producto-1790191572379.webp"
+      ],
       "visible": true
     },
     {
@@ -204,7 +234,9 @@
       "name": "Vela inclinada en vaso Imperial",
       "detail": "Aroma a elección",
       "price": 15200,
-      "image": "/products/vela-inclinada-en-vaso-imperial-1790299263688.webp",
+      "images": [
+        "/products/vela-inclinada-en-vaso-imperial-1790299263688.webp"
+      ],
       "visible": true
     },
     {
@@ -213,7 +245,9 @@
       "name": "Vela de agua en vaso Tennessee",
       "detail": "Aroma a elección",
       "price": 19200,
-      "image": "/products/vela-de-agua-en-vaso-tennessee-1790299302863.webp",
+      "images": [
+        "/products/vela-de-agua-en-vaso-tennessee-1790299302863.webp"
+      ],
       "visible": true
     }
   ]

@@ -1,3 +1,5 @@
+import { AromaRibbon } from './components/AromaRibbon'
+import { Aromas } from './components/Aromas'
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
 import { Historia } from './components/Historia'
@@ -15,7 +17,9 @@ export default function App() {
       <Header />
       <main>
         <Hero />
+        <AromaRibbon />
         <Catalogo />
+        <Aromas />
         <Souvenirs />
         <Historia />
         <InstagramFeed />

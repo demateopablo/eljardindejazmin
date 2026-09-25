@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 /* Paleta tomada del logo: verde salvia como marca, crema como base,
-   rosa palo / durazno / dorado apagado como acentos suaves. */
+   rosa palo / durazno / dorado apagado como acentos suaves.
+   `night` y `ember` son la noche y la luz de la vela: el contrapunto cálido
+   que usan el hero, la franja de aromas y la biblioteca de aromas. */
 @theme {
   --color-cream-50: #fbf9f4;
   --color-cream-100: #f7f3ec;
@@ -16,6 +18,8 @@
   --color-sage-600: #63735a;
   --color-sage-700: #4f5c47;
 
+  /* blush-200 al 40 % sobre cream-100, sólido (para los bordes ondulados) */
+  --color-blush-100: #f5ebe5;
   --color-blush-200: #f3dedb;
   --color-blush-300: #e8c4c0;
   --color-blush-400: #d9a7a1;
@@ -31,9 +35,23 @@
   --color-ink-700: #4a453e;
   --color-ink-900: #322e29;
 
+  --color-night-700: #3a3a2c;
+  --color-night-800: #2a2b20;
+  --color-night-900: #1f2019;
+  --color-night-950: #161711;
+
+  --color-ember-200: #fbe6c2;
+  --color-ember-300: #f6d39a;
+  --color-ember-400: #eeb566;
+  --color-ember-500: #e0913f;
 
   --font-display: "Cormorant Garamond", "Georgia", "Times New Roman", serif;
   --font-body: "Jost", "Segoe UI", system-ui, sans-serif;
+  --font-hand: "Caveat", "Segoe Print", cursive;
+
+  --animate-flicker: flicker 3.2s ease-in-out infinite;
+  --animate-glow: glow 4s ease-in-out infinite;
+  --animate-marquee: marquee 60s linear infinite;
 }
 
 html {
@@ -44,7 +62,103 @@ body {
   @apply bg-cream-100 text-ink-700 font-body antialiased;
 }
 
+/* Grano de papel muy sutil sobre todo el sitio: saca el "plano digital" del crema. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .25 0 0 0 0 .2 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 /* Las secciones tienen ancla; dejamos aire para que el header sticky no las tape */
 section[id] {
   scroll-margin-top: 4.5rem;
+}
+
+/* Ventana en arco para cajas 4:5 (medio círculo arriba = 50 % del ancho = 40 % del alto).
+   No usar rounded-t-full: el navegador escala todos los radios y las esquinas de abajo quedan rectas. */
+.arch {
+  border-radius: 50% 50% var(--arch-b, 1rem) var(--arch-b, 1rem) / 40% 40% var(--arch-b, 1rem) var(--arch-b, 1rem);
+}
+
+/* ---------- Animaciones (todas se apagan con prefers-reduced-motion) ---------- */
+
+@keyframes flicker {
+  0%, 100% { transform: scale(1, 1) skewX(0deg); }
+  20% { transform: scale(0.96, 1.05) skewX(-1.5deg); }
+  40% { transform: scale(1.03, 0.97) skewX(1deg); }
+  60% { transform: scale(0.98, 1.07) skewX(-0.5deg); }
+  80% { transform: scale(1.02, 0.98) skewX(1.5deg); }
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+/* Humo/aroma que sube y se desvanece */
+@keyframes rise {
+  0% { transform: translateY(0) scaleX(1); opacity: 0; }
+  15% { opacity: 0.55; }
+  100% { transform: translateY(-70px) scaleX(1.6); opacity: 0; }
+}
+
+/* Motas de luz flotando */
+@keyframes drift {
+  0% { transform: translate(0, 0); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(var(--dx, 12px), -90px); opacity: 0; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Tags de aroma colgando: vaivén suave */
+@keyframes sway {
+  0%, 100% { transform: rotate(var(--tilt, 0deg)); }
+  50% { transform: rotate(calc(var(--tilt, 0deg) * -1)); }
+}
+
+.smoke {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: rise 6s ease-out infinite;
+}
+
+.mote {
+  animation: drift var(--dur, 7s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.hanging {
+  transform-origin: 50% 0;
+  animation: sway var(--sway, 5s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Aparición al scrollear, sin JS, donde el navegador lo soporta. */
+@supports (animation-timeline: view()) {
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+  }
+  .reveal {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
 }

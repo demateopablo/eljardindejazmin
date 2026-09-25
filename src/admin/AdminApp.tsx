@@ -23,19 +23,27 @@ export function AdminApp() {
 
   return (
     <div className="min-h-screen bg-cream-100">
-      <header className="sticky top-0 z-40 border-b border-cream-300/60 bg-cream-100/90 backdrop-blur">
-        <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-4">
+      <header className="sticky top-0 z-40 pt-[env(safe-area-inset-top)] border-b border-cream-300/60 bg-cream-100/90 backdrop-blur">
+        <div className="mx-auto flex h-14 max-w-3xl items-center justify-between px-4">
           <div className="flex items-center gap-3">
             <img src={logo} alt="" className="h-9 w-auto" width="743" height="455" />
             <span className="text-xs tracking-[0.18em] text-ink-500 uppercase">Panel</span>
           </div>
           {state.kind === 'ready' && (
-            <div className="flex items-center gap-3 text-sm text-ink-500">
-              <span className="hidden sm:inline">{state.email}</span>
+            <div className="flex items-center gap-1 text-sm text-ink-500">
+              <span className="mr-2 hidden sm:inline">{state.email}</span>
+              <a
+                href="/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-10 items-center rounded-full px-3 transition-colors hover:text-sage-700"
+              >
+                Ver sitio
+              </a>
               <button
                 type="button"
                 onClick={logout}
-                className="rounded-full border border-cream-300 px-3 py-1 transition-colors hover:border-sage-300 hover:text-sage-700"
+                className="min-h-10 rounded-full border border-cream-300 px-3 transition-colors hover:border-sage-300 hover:text-sage-700"
               >
                 Salir
               </button>

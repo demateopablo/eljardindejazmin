@@ -42,7 +42,7 @@ export const categories: Category[] = [
   {
     id: 'difusores',
     name: 'Difusores de aroma',
-    description: 'Con cañitas de ratán, para perfumar ambientes sin fuego.',
+    description: 'Con varillas, para perfumar ambientes sin fuego.',
   },
   {
     id: 'wax-melts',

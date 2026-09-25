@@ -46,7 +46,11 @@ export function InstagramFeed() {
       <div className="mx-auto max-w-6xl px-6">
         <SectionTitle
           eyebrow="Desde Instagram"
-          title="Lo último del jardín"
+          title={
+            <>
+              Lo último <em>del jardín</em>
+            </>
+          }
           intro="Lo que estamos haciendo estos días. Tocá una foto para verla en Instagram."
         />
 

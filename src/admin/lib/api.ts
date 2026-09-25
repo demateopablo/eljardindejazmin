@@ -1,4 +1,4 @@
-import type { SavePayload } from '../../data/productsSchema'
+import type { PhotosPayload, Product, SavePayload } from '../../data/productsSchema'
 
 export class ApiError extends Error {
   status: number
@@ -24,6 +24,10 @@ export const api = {
   login: (credential: string) =>
     request<{ email: string }>('/api/auth/login', { method: 'POST', body: JSON.stringify({ credential }) }),
   logout: () => request<{ ok: true }>('/api/auth/logout', { method: 'POST', body: '{}' }),
+  /** Catálogo actual en GitHub (no el empaquetado en el build). */
+  products: () => request<{ products: Product[] }>('/api/products'),
+  uploadPhotos: (payload: PhotosPayload) =>
+    request<{ ok: true }>('/api/products/photos', { method: 'POST', body: JSON.stringify(payload) }),
   save: (payload: SavePayload) =>
     request<{ ok: true; commit: { sha: string; url: string } }>('/api/products/save', {
       method: 'POST',

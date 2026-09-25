@@ -23,7 +23,11 @@ export function Seguinos() {
       <div className="mx-auto max-w-6xl px-6">
         <SectionTitle
           eyebrow="Seguinos"
-          title="Mirá las novedades"
+          title={
+            <>
+              Mirá las <em>novedades</em>
+            </>
+          }
           intro="Subimos los productos nuevos, aromas de temporada y algunas escenas del jardín. Por Instagram también nos escribís para hacer tu pedido."
         />
 
@@ -36,10 +40,10 @@ export function Seguinos() {
                 rel="noopener noreferrer"
                 className="flex flex-col items-center gap-3 rounded-2xl border border-cream-300/70 bg-cream-50 px-4 py-6 text-center transition-colors hover:border-sage-300 hover:bg-sage-100/40"
               >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-sage-100 text-sage-700">
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-night-900 text-ember-200">
                   <Icon className="h-6 w-6" />
                 </span>
-                <span className="font-display text-lg text-ink-900">{name}</span>
+                <span className="font-display text-xl font-medium text-ink-900">{name}</span>
                 <span className="text-sm text-ink-500 break-all">{label}</span>
               </a>
             </li>
