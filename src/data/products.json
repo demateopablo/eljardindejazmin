@@ -312,6 +312,17 @@
         "/products/vela-hojas-1790308605733.webp"
       ],
       "visible": true
+    },
+    {
+      "id": "velas-corazon",
+      "category": "velas",
+      "name": "Velas corazón",
+      "detail": "Chico • aroma y color a elección",
+      "price": null,
+      "images": [
+        "/products/velas-corazon-1790308655677.webp"
+      ],
+      "visible": true
     }
   ]
 }
